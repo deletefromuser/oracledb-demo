@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="mybatisGenerator" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@//localhost:1521/orcl" userId="tom" password="a12345678">
+			<!-- http://mybatis.org/generator/usage/mysql.html#catalogs-and-schema -->
+			<property name="serverTimezone" value="UTC" />
+			<property name="nullCatalogMeansCurrent" value="true" />
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="useJSR310Types" value="true" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.example.oracledbdemo.dao.model" targetProject="src/main/java">
+			<!-- <property name="enableSubPackages" value="true" /> -->
+			<property name="trimStrings" value="true" />
+			<property name="constructorBased" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.example.oracledbdemo.dao.mapper" targetProject="src/main/resources">
+			<!-- <property name="enableSubPackages" value="true" /> -->
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="com.example.oracledbdemo.dao.mapper" targetProject="src/main/java" type="XMLMAPPER">
+			<!-- <property name="enableSubPackages" value="true" /> -->
+		</javaClientGenerator>
+
+		
+		<table tableName="countries">
+			<property name="ignoreQualifiersAtRuntime" value="true" />
+		</table>
+
+	</context>
+</generatorConfiguration>
