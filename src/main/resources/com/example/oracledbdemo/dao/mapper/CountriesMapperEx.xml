@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.oracledbdemo.dao.mapper.CountriesMapperEx">
+  <select id="selectByLike" parameterType="java.lang.String" resultMap="com.example.oracledbdemo.dao.mapper.CountriesMapper.BaseResultMap">
+    select 
+    <include refid="com.example.oracledbdemo.dao.mapper.CountriesMapper.Base_Column_List" />
+    from COUNTRIES
+    where COUNTRY_NAME like '%'||#{countryName,jdbcType=CHAR}||'%'
+    order by #{countryId,jdbcType=CHAR}
+    fetch first 1 rows only
+  </select>
+  <select id="selectOrder" resultMap="com.example.oracledbdemo.dao.mapper.CountriesMapper.BaseResultMap">
+    select 
+    <include refid="com.example.oracledbdemo.dao.mapper.CountriesMapper.Base_Column_List" />
+    from COUNTRIES
+    order by #{orderName}
+  </select>
+</mapper>

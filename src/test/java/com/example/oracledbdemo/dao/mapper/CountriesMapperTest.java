@@ -10,11 +10,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.oracledbdemo.dao.model.Countries;
 
+import lombok.extern.slf4j.Slf4j;
+
 @SpringBootTest
+@Slf4j
 class CountriesMapperTest {
 
     @Autowired
     CountriesMapper mapper;
+
+    @Autowired
+    CountriesMapperEx mapperEx;
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
@@ -35,7 +41,21 @@ class CountriesMapperTest {
     @Test
     void test() {
         Countries country = mapper.selectByPrimaryKey("CA");
-        System.out.println(country.toString());
+        log.info(country.toString());
+    }
+
+    @Test
+    void testLike() {
+        Countries country = mapperEx.selectByLike("na");
+        log.info(country.toString());
+    }
+
+    @Test
+    void testOrder() {
+        Countries country = mapperEx.selectOrder("regionId desc").get(0);
+        log.info(country.toString());
+        country = mapperEx.selectOrder("regionId").get(0);
+        log.info(country.toString());
     }
 
 }

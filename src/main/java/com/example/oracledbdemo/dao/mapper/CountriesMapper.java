@@ -20,6 +20,8 @@ public interface CountriesMapper {
 
     Countries selectByPrimaryKey(String countryId);
 
+    // Countries selectByLike(String countryName);
+
     int updateByExampleSelective(@Param("row") Countries row, @Param("example") CountriesExample example);
 
     int updateByExample(@Param("row") Countries row, @Param("example") CountriesExample example);

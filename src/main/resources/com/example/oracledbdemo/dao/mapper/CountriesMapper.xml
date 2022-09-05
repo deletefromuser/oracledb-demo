@@ -180,4 +180,12 @@
       REGION_ID = #{regionId,jdbcType=NUMERIC}
     where COUNTRY_ID = #{countryId,jdbcType=CHAR}
   </update>
+
+   <!-- <select id="selectByLike" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from COUNTRIES
+    where COUNTRY_NAME like '%'||#{countryName,jdbcType=CHAR}||'%'
+    fetch first 1 rows only
+  </select> -->
 </mapper>

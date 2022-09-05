@@ -4,3 +4,14 @@ spring:
     driverClassName: oracle.jdbc.OracleDriver
     username: tom
     password: a12345678
+
+logging:
+  level:
+    root: "warn"
+    org.springframework.web: "debug"
+    com.example.oracledbdemo: "debug"
+
+mybatis:
+  mapperLocations: classpath:com/example/oracledbdemo/dao/mapper/*.xml
+
+
