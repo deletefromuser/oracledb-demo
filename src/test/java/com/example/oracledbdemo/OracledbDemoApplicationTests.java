@@ -1,13 +1,18 @@
 package com.example.oracledbdemo;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import java.security.NoSuchAlgorithmException;
 
-@SpringBootTest
+import org.junit.jupiter.api.Test;
+
+import lombok.extern.slf4j.Slf4j;
+
+// @SpringBootTest
+@Slf4j
 class OracledbDemoApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void contextLoads() throws NoSuchAlgorithmException {
+		log.info(javax.crypto.Cipher.getMaxAllowedKeyLength("AES") + "");
 	}
 
 }

@@ -3,13 +3,23 @@ spring:
     url: jdbc:oracle:thin:@//localhost:1521/orcl
     driverClassName: oracle.jdbc.OracleDriver
     username: tom
-    password: a12345678
+    # password: a12345678
+    password: ENC(Wy2DNHXl+5kJ5WYXLLH1JR9SXVyFmRNE)
+
+# https://www.devglan.com/online-tools/jasypt-online-encryption-decryption
+# java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="a12345678" password=hello algorithm=PBEWithMD5AndDES
+# https://github.com/ulisesbocchio/jasypt-spring-boot#update-11242019-version-300-release-includes
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    password: hello
 
 logging:
   level:
     root: "warn"
-    org.springframework.web: "debug"
-    com.example.oracledbdemo: "debug"
+    '[org.springframework.web]': "debug"
+    '[com.example.oracledbdemo]': "debug"
 
 mybatis:
   mapperLocations: classpath:com/example/oracledbdemo/dao/mapper/*.xml
