@@ -4,15 +4,22 @@ spring:
     driverClassName: oracle.jdbc.OracleDriver
     username: tom
     # password: a12345678
-    password: ENC(Wy2DNHXl+5kJ5WYXLLH1JR9SXVyFmRNE)
+    # old jasypt algorithm
+    # password: ENC(Wy2DNHXl+5kJ5WYXLLH1JR9SXVyFmRNE)
+    # new jasypt algorithm
+    password: ENC(BuCFHYlsrFdavOY1fEzaQv/CfDREA5IsfsMWthPp0N87NAlCcbAdAW+Hz73kdt/w)
 
 # https://www.devglan.com/online-tools/jasypt-online-encryption-decryption
 # java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="a12345678" password=hello algorithm=PBEWithMD5AndDES
+# java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="a12345678" password=hello algorithm=PBEWITHHMACSHA512ANDAES_256 ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator
 # https://github.com/ulisesbocchio/jasypt-spring-boot#update-11242019-version-300-release-includes
 jasypt:
   encryptor:
-    algorithm: PBEWithMD5AndDES
-    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    # old jasypt algorithm
+    # algorithm: PBEWithMD5AndDES
+    # iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    # new default jasypt algorithm
+    # algorithm: PBEWITHHMACSHA512ANDAES_256
     password: hello
 
 logging:
