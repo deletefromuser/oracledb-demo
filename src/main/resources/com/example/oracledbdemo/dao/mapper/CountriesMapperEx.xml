@@ -5,8 +5,8 @@
     select 
     <include refid="com.example.oracledbdemo.dao.mapper.CountriesMapper.Base_Column_List" />
     from COUNTRIES
-    where COUNTRY_NAME like '%'||#{countryName,jdbcType=CHAR}||'%'
-    order by #{countryId,jdbcType=CHAR}
+    <!-- where COUNTRY_NAME like '%'||#{countryName,jdbcType=CHAR}||'%' -->
+    where COUNTRY_NAME like '%${countryName,jdbcType=CHAR}%'
     fetch first 1 rows only
   </select>
   <select id="selectOrder" resultMap="com.example.oracledbdemo.dao.mapper.CountriesMapper.BaseResultMap">
@@ -14,5 +14,22 @@
     <include refid="com.example.oracledbdemo.dao.mapper.CountriesMapper.Base_Column_List" />
     from COUNTRIES
     order by #{orderName}
+  </select>
+  <select id="selectSplit" resultMap="com.example.oracledbdemo.dao.mapper.CountriesMapper.BaseResultMap">
+    select 1 COUNTRY_ID,'' COUNTRY_NAME, 1 REGION_ID from dual where 
+    '1' in <foreach collection="countryName.split(',')" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+    and 1 in <foreach collection="regionId.split(',')" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+
+  </select>
+  <select id="selectSharp" resultMap="com.example.oracledbdemo.dao.mapper.CountriesMapper.BaseResultMap">
+    select 
+    '' COUNTRY_ID,
+    '%'||lpad(rownum + #{regionId}, 5, '0') COUNTRY_NAME,
+    3 REGION_ID
+    from dual
   </select>
 </mapper>
