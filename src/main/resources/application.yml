@@ -31,4 +31,5 @@ logging:
 mybatis:
   mapperLocations: classpath:com/example/oracledbdemo/dao/mapper/*.xml
 
-
+server:
+  port: 10990
